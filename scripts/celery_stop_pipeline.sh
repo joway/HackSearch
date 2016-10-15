@@ -1,0 +1,1 @@
+celery multi stopwait pipeline --pidfile="$HOME/spider/celery/%n.pid"
