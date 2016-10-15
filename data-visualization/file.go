@@ -15,6 +15,7 @@ func IndexGET(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
         http.Error(w, unableToFetchHTMLFile, 500)
+        return
     }
 
     fmt.Fprintf(w, "%s", htmlFile)
