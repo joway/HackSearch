@@ -11,6 +11,11 @@ from utils.helpers import extract_options_from_task
 @app.task(routing_key='processor')
 def process(task):
     result = ProcessorService.process(task)
+
+    if not result:
+        print('内容过短')
+        return
+
     # 存储任务
     if result['mapping']:
         resp = pipeline.delay(result)
