@@ -2,6 +2,7 @@
     font-family: 'Lato';
     background-color: #6f5499;
     text-align: center;
+    margin-bottom: 0px;
 }
 
 #title {
@@ -106,7 +107,7 @@
     color: rgb(34, 34, 34);
     font-size: 30px;
     position: relative;
-    margin-top: 40px!important;
+    margin-top: 60px!important;
     margin-bottom: 80px;
     font-family: 'Lato';
     display: block;
