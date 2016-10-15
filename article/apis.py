@@ -14,5 +14,8 @@ class ArticleViewSet(viewsets.GenericViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        try:
+            serializer.save()
+        except Exception as e:
+            print(e)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
