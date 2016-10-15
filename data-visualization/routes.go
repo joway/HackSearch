@@ -19,6 +19,12 @@ var routes = Routes {
         IndexGET,
     },
     Route {
+        "Search",
+        "GET",
+        "/search",
+        SearchGET,
+    },
+    Route {
         "KeywordFrequency",
         "GET",
         "/api/keyword-frequency",
