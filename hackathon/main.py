@@ -2,7 +2,9 @@ from hackathon.api import APIService
 from hackathon.helper import read_url_file
 from utils.helpers import gen_uuid, get_full_domain
 
-filename = 'data/url.txt'
+# filename = 'data/url.txt'
+# filename = 'data/v2ex.txt'
+filename = 'data/test'
 links = read_url_file(filename)
 
 for link in links:

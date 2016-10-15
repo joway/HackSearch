@@ -6,7 +6,9 @@ from lxml.etree import LxmlSyntaxError
 
 from spider.processor.extractor import Extractor
 from utils.constants import ProcessType
-from utils.helpers import extract_valid_links
+from utils.helpers import extract_valid_links, normalize
+
+MIN_CONTENT_LINE = 10
 
 
 class ProcessorService(object):
@@ -14,21 +16,21 @@ class ProcessorService(object):
     def process(cls, task):
         process_type = task['process_type']
         if process_type == ProcessType.XPATH:
-            handler = cls.process_xpath
+            mapping = cls.process_xpath(task['content'], task['rules'])
         elif process_type == ProcessType.CSS_SELECT:
-            handler = cls.process_css_select
+            mapping = cls.process_css_select(task['content'], task['rules'])
         elif process_type == ProcessType.JSON:
-            handler = cls.process_json
+            mapping = cls.process_json(task['content'], task['rules'])
         elif process_type == ProcessType.AUTO_MATCH:
-            handler = cls.process_auto_match
+            mapping = cls.process_auto_match(task['content'], task['rules'])
+            mapping['content'] = normalize(task['content'])
         else:
             raise Exception
 
-        mapping = handler(task['content'], task['rules'])
-
         # 通知 scheduler 进行后续链接爬取
         valid_links = extract_valid_links(task['content'], task['valid_link_regex'], task['domain'])
-        result = cls.prepare_result(task['proj_id'], task['url'],task['catalog'], task['domain'], task['task_id'], mapping,
+        result = cls.prepare_result(task['proj_id'], task['url'], task['catalog'], task['domain'], task['task_id'],
+                                    mapping,
                                     valid_links)
         return result
 
@@ -36,7 +38,6 @@ class ProcessorService(object):
     def process_auto_match(cls, content, rules=None):
         return cls.process_css_select(content, rules={
             'title': 'title',
-            'content': 'body',
         })
 
     @classmethod
@@ -76,6 +77,7 @@ class ProcessorService(object):
 
     @classmethod
     def prepare_result(cls, proj_id, url, catalog, domain, task_id, mapping, valid_links=[]):
+        mapping['url'] = url
         return {
             'proj_id': proj_id,
             'url': url,

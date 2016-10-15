@@ -1,15 +1,11 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import re
-
 import requests
 
-reCOMM = r'<!--.*?-->'
-reTRIM = r'<{0}.*?>([\s\S]*?)<\/{0}>'
-reTAG = r'<[\s\S]*?>|[ \t\r\f\v]'
-
 # 当前高度 / 最大高度 > BASE_RATE 视作为有效内容
+from utils.helpers import normalize
+
 BASE_RATE = 0.3
 
 
@@ -31,19 +27,17 @@ class Extractor(object):
     def __str__(self):
         return self.extracted
 
+    def result(self):
+        return self.extracted
+
     def init(self):
         if self.url:
             self.request_url()
-        self.normalize()
+
+        self.content = normalize(self.content)
         self.prepare()
         self.distribute()
         self.modify_extract()
-
-    def normalize(self):
-        self.content = re.sub(reCOMM, "", self.content)
-        self.content = re.sub(reTRIM.format("script"), "", self.content)
-        self.content = re.sub(reTRIM.format("style"), "", self.content)
-        self.content = re.sub(reTAG, "", self.content)
 
     def prepare(self):
         self.ctexts = [x + '\n' for x in self.content.split('\n') if x]
