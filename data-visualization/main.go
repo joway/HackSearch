@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-    fmt.Println("Data Visualization Server")
+    fmt.Println("Go Webpage Server")
     router := NewRouter()
 
     log.Fatal(http.ListenAndServe(":5101", router))
