@@ -101,3 +101,15 @@ def get_root_domain(url):
 
 def get_scheme(url):
     return urlparse(url).scheme
+
+
+def normalize(content):
+    reCOMM = r'<!--.*?-->'
+    reTRIM = r'<{0}.*?>([\s\S]*?)<\/{0}>'
+    reTAG = r'<[\s\S]*?>|[ \t\r\f\v]'
+
+    content = re.sub(reCOMM, "", content)
+    content = re.sub(reTRIM.format("script"), "", content)
+    content = re.sub(reTRIM.format("style"), "", content)
+    content = re.sub(reTAG, "", content)
+    return content

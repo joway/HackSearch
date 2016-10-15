@@ -6,7 +6,7 @@ from lxml.etree import LxmlSyntaxError
 
 from spider.processor.extractor import Extractor
 from utils.constants import ProcessType
-from utils.helpers import extract_valid_links
+from utils.helpers import extract_valid_links, normalize
 
 MIN_CONTENT_LINE = 10
 
@@ -23,9 +23,7 @@ class ProcessorService(object):
             mapping = cls.process_json(task['content'], task['rules'])
         elif process_type == ProcessType.AUTO_MATCH:
             mapping = cls.process_auto_match(task['content'], task['rules'])
-            mapping['content'] = Extractor(content=task['content'])
-            if len(mapping['content'].split('\n')) <= MIN_CONTENT_LINE:
-                return None
+            mapping['content'] = normalize(task['content'])
         else:
             raise Exception
 
