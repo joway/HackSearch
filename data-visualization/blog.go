@@ -91,7 +91,9 @@ func KeywordFrequencyGET(w http.ResponseWriter, r *http.Request) {
 
         keys := strings.Split(blogs[i].Key, " ")
         for j := 0; j < len(keys); j++ {
-            keyMap[keys[j]]++
+            if keys[j] != "" {
+                keyMap[keys[j]]++
+            }
         }
     }
 
@@ -116,7 +118,9 @@ func KeywordLinksGET(w http.ResponseWriter, r *http.Request) {
         keys := strings.Split(blogs[i].Key, " ")
         for j := 0; j < len(keys); j++ {
             for k := j + 1; k < len(keys); k++ {
-                keyMap[edge{keys[j], keys[k]}]++
+                if keys[j] != "" && keys[k] != "" {
+                    keyMap[edge{keys[j], keys[k]}]++
+                }
             }
         }
     }
