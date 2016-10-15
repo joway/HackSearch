@@ -1,0 +1,1 @@
+celery multi stopwait processor --pidfile="$HOME/spider/celery/%n.pid"

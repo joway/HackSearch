@@ -1,0 +1,73 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "dispider"
+      MYSQL_USER: "dispider"
+      MYSQL_PASSWORD: "dispider"
+      MYSQL_ROOT_PASSWORD: "mypassword"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  elasticsearch:
+    image: daocloud.io/joway/elasticsearch:latest
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  web:
+    image: daocloud.io/joway/dispider:latest
+    ports:
+      - "8000:8000"
+    restart: always
+    volumes:
+      - .:/code
+    links:
+      - mysql
+      - redis
+      - elasticsearch
+    depends_on:
+      - mysql
+      - redis
+      - elasticsearch
+    environment:
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      ELASTIC_HOSTS: "elasticsearch"
+      ELASTIC_PORT: "9200"
+      MYSQL_DATABASE: "dispider"
+      MYSQL_USER: "dispider"
+      MYSQL_PASSWORD: "dispider"
+
+
+  celery:
+    image: daocloud.io/joway/dispider:latest
+    command: "sh ./scripts/celery_debug.sh"
+    restart: always
+    volumes:
+      - .:/code
+    links:
+      - mysql
+      - redis
+      - elasticsearch
+    depends_on:
+      - mysql
+      - redis
+      - elasticsearch
+    environment:
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      ELASTIC_HOSTS: "elasticsearch"
+      ELASTIC_PORT: "9200"
+      MYSQL_DATABASE: "dispider"
+      MYSQL_USER: "dispider"
+      MYSQL_PASSWORD: "dispider"
+
+
+

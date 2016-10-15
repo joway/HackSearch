@@ -1,0 +1,56 @@
+version: '2'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "dispider"
+      MYSQL_USER: "dispider"
+      MYSQL_PASSWORD: "dispider"
+      MYSQL_ROOT_PASSWORD: "mypassword"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  elasticsearch:
+    image: joway/elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  base: &app_base
+    build: .
+    volumes:
+      - .:/code
+    links:
+      - mysql
+      - redis
+      - elasticsearch
+    depends_on:
+      - mysql
+      - redis
+      - elasticsearch
+    environment:
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      ELASTIC_HOSTS: "elasticsearch"
+      ELASTIC_PORT: "9200"
+      MYSQL_HOST: "mysql"
+      MYSQL_DATABASE: "dispider"
+      MYSQL_USER: "dispider"
+      MYSQL_PASSWORD: "dispider"
+
+  web:
+    <<: *app_base
+    command: sh -c "./endpoint.sh"
+    ports:
+      - "80:80"
+
+  celery:
+    <<: *app_base
+    command: sh -c "./scripts/celery_debug.sh"
+    restart: always
+
