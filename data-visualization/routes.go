@@ -42,4 +42,10 @@ var routes = Routes {
         "/js/{filename}",
         FileGET,
     },
+    Route {
+        "FontFile",
+        "GET",
+        "/fonts/{filename}",
+        FileGET,
+    },
 }

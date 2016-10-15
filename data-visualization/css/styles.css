@@ -81,19 +81,16 @@
 }
 
 #heading {
-    box-sizing: border-box;
     font-family: 'Lato';
     font-weight: 400;
-    display: block;
     text-align: center;
     color: rgb(103, 112, 135);
     -webkit-font-smoothing:antialiased;
 }
 
-.how-it-works-buckets {
+.what-we-found-buckets {
     text-align: center;
-    padding: 40px 0px;
-    box-sizing: border-box;
+    padding: 0px 0px;
     display: block;
     font-family: 'Lato';
     font-weight: 400;
@@ -130,4 +127,104 @@
     display: block;
     margin-left: -60px;
     bottom: -20px;
+}
+
+.ht-wrapper.-wrapper-negative {
+    margin: 20px 0 0 0;
+    padding: 50px 0;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    color: #606b70;
+    line-height: 1.42857;
+    margin-bottom: 100px;
+}
+
+.ht-wrapper {
+    position: relative;
+}
+
+.row:before {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+    content: " ";
+    display: table;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+.ht-wrapper.-wrapper-negative > div + div {
+    border-left: 1px solid rgba(150, 150, 150, 0.15);
+}
+
+.content {
+    color: black;
+}
+
+.ht-box.-box-intro {
+    color: #606b70;
+}
+
+.ht-box {
+    font-weight: 500;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.-box-intro .ht-icon {
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #cdbfe3;
+}
+
+.ht-icon {
+    display: inline-block;
+}
+
+[class*=" icon-"] {
+    font-family: 'icomoon'!important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+    content: "\e949";
+}
+
+.icon-talk:before {
+    content: "\e919";
+}
+
+.icon-tick:before {
+    content: "\e91a";
+}
+
+.ht-box.-box-intro div {
+    font-size: 18px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
 }
