@@ -27,7 +27,7 @@ func allBlogs(w http.ResponseWriter, r *http.Request) Blogs {
         return nil
     }
 
-    rows, err := db.Query("SELECT url, title, content, keyset, created_at FROM " + table)
+    rows, err := db.Query("SELECT url, title, content, keyset, created_at FROM " + table + " ORDER BY created_at DESC LIMIT 100")
 
     if err != nil {
         fmt.Println(err)
