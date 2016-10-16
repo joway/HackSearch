@@ -1,5 +1,6 @@
 body {
     padding-top: 70px;
+    font-family: 'Lato';
 }
 
 .navbar {
@@ -28,4 +29,55 @@ ul {
 .title {
     margin-top: 40px;
     font-weight: 400;
+}
+
+em {
+    color: red;
+    font-style: normal;
+}
+
+#form {
+    background-image: none;
+    position: relative;
+    border: 1px solid #b6b6b6;
+    background: #fff;
+    display: inline-block;
+    vertical-align: top;
+    width: 539px;
+    margin-right: 0;
+    border-right-width: 0;
+    border-color: transparent;
+    overflow: hidden;
+    height: 30px;
+    text-align: left;
+    list-style: none;
+    font: 12px 'Lato';
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#query {
+    width: 460px;
+    position: relative;
+    height: 22px;
+    font: 16px/18px 'Lato';
+    margin: 3px 0 0 7px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-writing-mode: horizontal-tb;
 }

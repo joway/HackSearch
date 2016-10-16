@@ -12,14 +12,19 @@ type shards struct {
     Failed, Successful, Total int
 }
 
+type highlight struct {
+    Content []string
+}
+
 type source struct {
     Title, Content, Url string
 }
 
 type record struct {
     Type string `json:"_type"`
-    Index string `json:"_index"`
     Id string `json:"_id"`
+    Highlight highlight `json:"highlight"`
+    Index string `json:"_index"`
     Source source `json:"_source"`
     Score float64 `json:"_score"`
 }
@@ -81,7 +86,10 @@ func SearchGET(w http.ResponseWriter, r *http.Request) {
     for i := 0; i < len(body.Hits.Hits); i++ {
         record := body.Hits.Hits[i]
         title := record.Source.Title
-        content := record.Source.Content
+        content := ""
+        for j := 0; j < len(record.Highlight.Content); j++ {
+            content += record.Highlight.Content[j]
+        }
         url := record.Source.Url
         str += fmt.Sprintf("<li><a href=\"%s\"><h3 class=\"title\">%s</h3></a><p class=\"content\">%s</p><a class=\"url\" href=\"%s\">%s</a></li>", url, title, content, url, url)
     }
