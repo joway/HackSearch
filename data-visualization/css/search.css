@@ -1,0 +1,31 @@
+body {
+    padding-top: 70px;
+}
+
+.navbar {
+    background-color: #6f5499;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: #cdbfe3;
+}
+
+#main-body {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+ul {
+    list-style-type: none;
+    padding-right: 40px;
+    margin-bottom: 100px;
+}
+
+.title {
+    margin-top: 40px;
+    font-weight: 400;
+}
