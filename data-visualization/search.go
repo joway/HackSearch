@@ -78,8 +78,7 @@ func SearchGET(w http.ResponseWriter, r *http.Request) {
     }
 
     str := "<ul>"
-    total := int(body.Took)
-    for i := 0; i < total; i++ {
+    for i := 0; i < len(body.Hits.Hits); i++ {
         record := body.Hits.Hits[i]
         title := record.Source.Title
         content := record.Source.Content
