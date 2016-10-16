@@ -5,6 +5,13 @@
         <link rel="stylesheet" type="text/css" href="/css/font.css" />
         <link rel="stylesheet" type="text/css" href="/css/styles.css" />
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+
+        <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/Chart.js/2.3.0/Chart.bundle.js"></script>
+        <script src="/js/d3.v3.min.js"></script>
+		<script src="/js/d3pie.js"></script>
+		<script src="/js/d3.layout.cloud.js"></script>
+
     </head>
     <body>
         <div id="header" class="jumbotron masthead">
@@ -63,5 +70,26 @@
                 </div>
             </div>
         </section>
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center" class="col-sm-6">
+                    <h1>搜索趋势图</h1>
+                    <canvas id="myChart" width="320" height="320"></canvas>
+                </div>
+                <div style="text-align: center" class="col-sm-6">
+                    <h1>最热关键字</h1>
+                    <svg width="600" height="600"></svg>
+                </div>
+                <div style="text-align: center" class="col-sm-6">
+                    <h1>分类检索</h1>
+                    <div id="pieChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/cake.js"></script>
+        <script src="/js/trend.js"></script>
+        <script src="/js/cloud.js"></script>
+
     </body>
 </html>

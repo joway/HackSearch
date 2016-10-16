@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="layui/layui.js"></script>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script>
+
+        //一般直接写在一个js文件中
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer
+                    , form = layui.form();
+
+        });
+
+        function search() {
+            var query = document.getElementById('query').value;
+
+            $.ajax({
+                        url: "http://hack.joway.wang:8000/hack/site_search/?site=https://imququ.com/&&query=" + query,
+                        dataType: 'jsonp',
+                        jsonpCallback: 'callback',
+                        processData: false,
+                        type: 'get',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                    }
+            );
+        }
+    </script>
+</head>
+<body>
+<input type="text" name="query" id="query">
+<button onclick="search()">Search</button>
+</body>
+</html>
