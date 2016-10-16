@@ -4,7 +4,8 @@ from utils.helpers import gen_uuid, get_full_domain
 
 # filename = 'data/url.txt'
 # filename = 'data/v2ex.txt'
-filename = 'data/test'
+# filename = 'data/test'
+# filename = 'data/oi.txt'
 links = read_url_file(filename)
 
 for link in links:
