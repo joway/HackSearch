@@ -6,6 +6,7 @@ import (
     "io/ioutil"
     "net/http"
     "strconv"
+    "strings"
 )
 
 type shards struct {
@@ -58,7 +59,7 @@ func SearchGET(w http.ResponseWriter, r *http.Request) {
         page = int(pageTemp)
     }
 
-    resp, err := http.Get(fmt.Sprintf("http://hack.joway.wang:8000/hack/search/?query=%s&&page=%d", r.FormValue("q"), page))
+    resp, err := http.Get(fmt.Sprintf("http://hack.joway.wang:8000/hack/search/?query=%s&&page=%d", strings.Replace(r.FormValue("q"), " ", "-", -1), page))
     if err != nil {
         fmt.Println(err)
         http.Error(w, unableToSearchForQuery, 500)
