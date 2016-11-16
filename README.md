@@ -2,4 +2,4 @@
 
 Hack Search is a tech-community-oriented distributed vertical search engine.
 
-On a contemporary society, various technological article authors build their own technological blogs to share some summary and notes with the society. On the other hand, for searchers, it is hard to find technological contents with certain keywords. Even with Google, good and bad contents might be jumbled together. Therefore, a vertical search engine, i.e., a domain-specified search engine is required for technlogical communities.
+We started this project with our own experience. When we were programming newbies, we once had difficult time looking for useful resources, since there is too much irrelevant information on current search engines such as Google and Baidu. However, as we learned more about programming, we found that technological blogs were resources that helped us a lot. That's why we choose to implement an tech-specific search engine for programming beginners.
