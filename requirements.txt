@@ -3,7 +3,7 @@ anyjson==0.3.3
 beautifulsoup4==4.5.1
 billiard==3.3.0.23
 boto==2.42.0
-celery==3.1.23
+celery==5.2.2
 charade==1.0.3
 cssselect==0.9.2
 cycler==0.10.0
